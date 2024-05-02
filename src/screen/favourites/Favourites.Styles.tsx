@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headContainer: {
-    width: '100%',
+    width: '95%',
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
