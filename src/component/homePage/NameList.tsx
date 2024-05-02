@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 import {
   ActivityIndicator,
+  Button,
   FlatList,
   Image,
   StyleSheet,
@@ -23,7 +25,7 @@ export type UserDataProps = {
   userList: UserDataType;
 };
 const NameList: React.FC<UserDataProps> = ({}) => {
-  const {appColor} = useContext(GlobalInfoContext);
+  const {appColor, setAppColor} = useContext(GlobalInfoContext);
   const [data, setData] = useState<UserDataType[]>([]);
 
   const dispatch = useDispatch();
@@ -36,6 +38,10 @@ const NameList: React.FC<UserDataProps> = ({}) => {
     };
     fetchUser();
   }, []);
+
+  // const handelColor = () => {
+  //   setAppColor('red');
+  // };
 
   const handleAddToFav = (item: UserDataType) => {
     const isAlreadyAdded = favItems.some(favItem => favItem.id === item.id);
@@ -73,7 +79,14 @@ const NameList: React.FC<UserDataProps> = ({}) => {
   };
 
   const renderEmptyComponent = () => (
-    <View>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor: '#fff',
+      }}>
       <Text style={{color: 'red', fontSize: 30}}>No Data Found</Text>
       <ActivityIndicator size={30} />
     </View>
@@ -82,6 +95,7 @@ const NameList: React.FC<UserDataProps> = ({}) => {
   return (
     <View style={{paddingBottom: 20, backgroundColor: appColor}}>
       <Header />
+      {/* <Button title="Color" onPress={handelColor} /> */}
       <FlatList
         data={data}
         renderItem={renderItem}
