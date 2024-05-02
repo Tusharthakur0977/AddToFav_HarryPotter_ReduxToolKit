@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {removeFromFav} from '../../redux/slices/FavSlice';
 import Snackbar from 'react-native-snackbar';
 import {RootState} from '../../redux/store';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Favourites = () => {
   const navigation =
@@ -45,17 +46,17 @@ const Favourites = () => {
             gap: 10,
           }}>
           {favItems.map(item => (
-            <View style={styles.infoContainer}>
+            <View key={item.id} style={styles.infoContainer}>
               <Image source={{uri: item.image}} style={styles.image} />
-              <View key={item.id} style={styles.detailContainer}>
+              <View style={styles.detailContainer}>
                 <Text style={styles.text}>NAME: {item.name}</Text>
                 <Text style={styles.text}>Gender: {item.gender}</Text>
                 <Text style={styles.text}>House: {item.house}</Text>
               </View>
               <View style={{alignItems: 'flex-end', flex: 1}}>
-                <Icons
+                <Icon
                   style={{color: 'white'}}
-                  name="heart"
+                  name="heart-broken"
                   size={20}
                   onPress={() => handleRemoveToFav(item.id)}
                 />

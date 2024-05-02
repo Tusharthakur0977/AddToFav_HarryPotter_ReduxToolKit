@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {fetchData} from "../api's/MyApi";
 import {UserDataType} from '../../types/UserData.Types';
 import Icons from 'react-native-vector-icons/AntDesign';
@@ -16,11 +16,14 @@ import {addToFav} from '../../redux/slices/FavSlice';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
 import Snackbar from 'react-native-snackbar';
+import Header from './Header';
+import {GlobalInfoContext} from '../../context/ColorContext';
 
 export type UserDataProps = {
   userList: UserDataType;
 };
 const NameList: React.FC<UserDataProps> = ({}) => {
+  const {appColor} = useContext(GlobalInfoContext);
   const [data, setData] = useState<UserDataType[]>([]);
 
   const dispatch = useDispatch();
@@ -77,7 +80,8 @@ const NameList: React.FC<UserDataProps> = ({}) => {
   );
 
   return (
-    <View style={{paddingBottom: 90, backgroundColor: '#212121'}}>
+    <View style={{paddingBottom: 20, backgroundColor: appColor}}>
+      <Header />
       <FlatList
         data={data}
         renderItem={renderItem}

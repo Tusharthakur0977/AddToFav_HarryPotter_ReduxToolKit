@@ -1,18 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 import {Text, View, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import Icons from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../routing/typings';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
+import {GlobalInfoContext} from '../../context/ColorContext';
 
 const Header = () => {
   const favItems = useSelector((state: RootState) => state.fav);
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+  const {appColor} = useContext(GlobalInfoContext);
   const color = () => {
     return favItems.length > 0 ? '#FF6666' : 'grey';
   };

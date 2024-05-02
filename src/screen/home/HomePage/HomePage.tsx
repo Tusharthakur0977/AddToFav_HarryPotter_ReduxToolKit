@@ -1,23 +1,26 @@
 /* eslint-disable react-native/no-inline-styles */
 import {View} from 'react-native';
-import React from 'react';
-import Header from '../../../component/homePage/Header';
+import React, {useState} from 'react';
 import NameList from '../../../component/homePage/NameList';
+import {GlobalInfoContext} from '../../../context/ColorContext';
 
 const HomePage = () => {
+  const [color, setColor] = useState('#212121');
   return (
-    <View style={{backgroundColor: '#212121'}}>
-      <Header />
-      <NameList
-        userList={{
-          id: '',
-          name: '',
-          gender: '',
-          image: '',
-          house: '',
-        }}
-      />
-    </View>
+    <GlobalInfoContext.Provider
+      value={{appColor: color, setAppColor: setColor}}>
+      <View style={{backgroundColor: color, flex: 1}}>
+        <NameList
+          userList={{
+            id: '',
+            name: '',
+            gender: '',
+            image: '',
+            house: '',
+          }}
+        />
+      </View>
+    </GlobalInfoContext.Provider>
   );
 };
 
