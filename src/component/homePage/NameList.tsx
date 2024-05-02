@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {fetchData} from "../api's/MyApi";
-import {UserDataType} from '../../UserData.Types';
+import {UserDataType} from '../../types/UserData.Types';
 import Icons from 'react-native-vector-icons/AntDesign';
 import {addToFav} from '../../redux/slices/FavSlice';
 import {useDispatch, useSelector} from 'react-redux';
